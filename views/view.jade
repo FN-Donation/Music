@@ -14,18 +14,18 @@ html
       <img src="/images/taxi_movie.jpg" width=100% height=100%>
 
       h2(id='description')
-        span='펀딩 모금액 : ' + fund_balance
+        span='Crowdfunding\'s Ether Balances: ' + fund_balance
         font(color='gray')  ETH
 
       h2(id='description')
 
-        span='보유 토큰 : ' + fund_tamount
+        span='Crowdfunding\'s Token Balances : ' + fund_tamount
         font(color='gray')  TDs
 
-      button(id='button' onClick="location.href='/users/new'") 참여하기
+      button(id='button' onClick="location.href='/users/new'") Join
 
       div(style=display)
-        h2 사용자 상세 정보
-        p - 사용자 계정 :   #{user}
-        p - 이더 보유량 :   #{user_balance} ETH
-        p - 토큰 보유량 :   #{user_tamount} TDs
+        h2 My Account
+        p - My Account :   #{user}
+        p - My Ether Balances :   #{user_balance} ETH
+        p - My Token Balances :   #{user_tamount} TDs

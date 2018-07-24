@@ -15,18 +15,18 @@ html
       <img src="/images/maker.jpg" width=100% height=100%>
 
       h2(id='description')
-        span='펀딩 모금액 : ' + fund_balance
+        span='Crowdfund\'s Fund Balances : ' + fund_balance
         font(color='gray')  ETH
 
       h2(id='description')
-        span='제작자 보유 이더 : ' + maker_balance
+        span='Producer\'s Ether Balances : ' + maker_balance
         font(color='gray')  ETH
 
-      button(id='button' onClick="location.href='/makers/withdraw'") 코인 인출하기
-      button(id='button' onClick="location.href='/makers/movie'") 동영상 업로드
+      button(id='button' onClick="location.href='/makers/withdraw'") Withdraw ETH
+      button(id='button' onClick="location.href='/makers/movie'") Movie Upload
 
     div(id='comment')
-      li 펀딩 계정 :
+      li Crowdfund Account :
         ul=fund + ' : ' + fund_balance + ' (ETH), ' + fund_tamount + ' (TDs)'
-      li 제작자 계정 :
+      li Producer Account :
         ul=maker + ' : ' + maker_balance + ' (ETH), ' + maker_tamount + ' (TDs)'
