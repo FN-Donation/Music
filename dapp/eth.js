@@ -1,12 +1,9 @@
 var constant = require('./constant.js');
 //------------------------
-// Web3 연결
+// Web3 Connect
 //------------------------
 var Web3 = require('web3');
 var web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
-//var web3 = new Web3(new Web3.providers.HttpProvider("http://ec2-13-124-244-3.ap-northeast-2.compute.amazonaws.com:8545"));
-
-
 
 const mainAddress = constant.mainAddress;
 const makerAddress = constant.makerAddress;
@@ -15,7 +12,7 @@ const TokenContractAddress = constant.TokenContractAddress;
 const crowdFundContractAddress = constant.crowdFundContractAddress;
 
 //------------------------
-// 스마트 컨트랙트 연결
+// Smart Contract Connect
 //------------------------
 // Token Contract
 var walletTokenAbi = [
@@ -373,35 +370,35 @@ var CrowdFundContract = web3.eth.contract(crowdFundAbi).at(crowdFundContractAddr
 
 web3.eth.defaultAccount = web3.eth.accounts[0];
 
-//----------------------------
-// 토큰 명부 조회 (BalanceOf)
-//----------------------------
+//-------------------------------------
+// GetToken  (TokenContract : BalanceOf)
+//-------------------------------------
 exports.getTokenAmount = function (address) {
     //+++++++  STEP 4. Get 실습 ++++++++++++
     return -1;
     return TokenContract.balanceOf(address);
 };
 
-//----------------------------
-// 펀딩 명부 조회 (BalanceOf)
-//----------------------------
+//-------------------------------------
+// getEther (CrowdFund : BalanceOf)
+//-------------------------------------
 exports.getFundAmount = function (address) {
-    //+++++++  STEP 4. Get 실습 ++++++++++++
+    //+++++++  STEP 4. Get Exercise ++++++++++++
     return -2;
     return CrowdFundContract.balanceOf(address);
 };
 
-//----------------------------
-// 이더 잔액 조회
-//----------------------------
+//-------------------------------------
+// getEther (Web3)
+//-------------------------------------
 exports.getBalance = function (address) {
-    //+++++++  STEP 4. Get 실습 ++++++++++++
+    //+++++++  STEP 4. Get Exercise ++++++++++++
     return -3;
     return web3.fromWei(web3.eth.getBalance(address), 'ether');
 };
 
 //----------------------------
-// 계정 언락
+// unlockAccount (Web3)
 //----------------------------
 exports.unlockAccount = function (from, passphase, callback) {
     web3.personal.unlockAccount(from, passphase, function (err, hash) {
@@ -416,10 +413,10 @@ exports.unlockAccount = function (from, passphase, callback) {
 };
 
 //----------------------------
-// 이더 이체하기
+// sendTransaction (Web3)
 //----------------------------
 exports.sendTransaction = function(from, to, value, gas, callback) {
-    //+++++++  STEP 4. SET 실습 ++++++++++++
+    //+++++++  STEP 4. SET Exercise ++++++++++++
     web3.eth.sendTransaction({
         to: to,
         from: from,
@@ -436,10 +433,10 @@ exports.sendTransaction = function(from, to, value, gas, callback) {
 };
 
 //----------------------------
-// 이더 인출하기
+// sendTransaction (Web3)
 //----------------------------
 exports.safeWithdraw = function(callback) {
-  //+++++++  STEP 4. SET 실습 ++++++++++++
+  //+++++++  STEP 4. SET Exercise ++++++++++++
   CrowdFundContract.safeWithdrawal(
     function (err, hash) {
         if (err) {
@@ -454,10 +451,10 @@ exports.safeWithdraw = function(callback) {
 };
 
 //----------------------------
-// 이벤트 모니터링
+// Event Monitoring (CrowdFund)
 //----------------------------
 exports.fundTransferEvent = function( callback ) {
-    //+++++++  STEP 5. Event Watch 실습 ++++++++++++
+    //+++++++  STEP 5. Event Watch Exercise ++++++++++++
     return callback(null,null);
     CrowdFundContract.FundTransfer().watch(function(err, res){
         if (err)

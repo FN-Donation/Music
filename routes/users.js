@@ -6,7 +6,7 @@ var router = express.Router();
 
 /* GET users listing. */
 //----------------------------
-// 펀드 참여하기 입력화면
+// Participation Input Screen
 //----------------------------
 router.get('/new', function(req, res, next) {
     var fund_balance = eth.getBalance(constant.crowdFundContractAddress);
@@ -16,7 +16,7 @@ router.get('/new', function(req, res, next) {
 });
 
 //----------------------------
-// 메인화면, 유저상세화면
+// User Main Screen
 //----------------------------
 router.get(['/', '/:id'], function(req, res, next) {
     var id = req.params.id;
@@ -41,7 +41,7 @@ router.get(['/', '/:id'], function(req, res, next) {
 });
 
 //----------------------------
-// 펀드 참여하기 액션
+// Participation Action
 //----------------------------
 router.post('/join', function(req, res, next) {
     var from = req.body.user;

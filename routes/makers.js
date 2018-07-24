@@ -5,7 +5,7 @@ var express = require('express');
 var router = express.Router();
 
 //----------------------------
-//  제작자 메인화면
+//  Makers Main Screen
 //----------------------------
 router.get('/', function(req, res, next) {
     var fund_balance = eth.getBalance(constant.crowdFundContractAddress);
@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 });
 
 //----------------------------
-//  제작자 인출하기 입력화면
+//  Withdraw Input Screen
 //----------------------------
 router.get('/withdraw', function(req, res, next) {
   var fund_balance = eth.getBalance(constant.crowdFundContractAddress);
@@ -30,7 +30,7 @@ router.get('/withdraw', function(req, res, next) {
 });
 
 //----------------------------
-//  제작자 인출하기 액션
+//  Withdraw Action
 //----------------------------
 router.post('/withdraw', function(req, res, next) {
   var passphase = req.body.passphase;
@@ -71,7 +71,7 @@ router.post('/withdraw', function(req, res, next) {
 
 
 //----------------------------
-//  동영상 업로드
+//  Video Upload
 //----------------------------
 router.get('/movie', function(req, res, next) {
   res.render('movie');
