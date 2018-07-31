@@ -375,7 +375,7 @@ web3.eth.defaultAccount = web3.eth.accounts[0];
 //-------------------------------------
 exports.getTokenAmount = function (address) {
     //+++++++  STEP 4. Get 실습 ++++++++++++
-    return -1;
+    //return -1;
     return TokenContract.balanceOf(address);
 };
 
@@ -384,7 +384,7 @@ exports.getTokenAmount = function (address) {
 //-------------------------------------
 exports.getFundAmount = function (address) {
     //+++++++  STEP 4. Get Exercise ++++++++++++
-    return -2;
+    //return -2;
     return CrowdFundContract.balanceOf(address);
 };
 
@@ -393,7 +393,7 @@ exports.getFundAmount = function (address) {
 //-------------------------------------
 exports.getBalance = function (address) {
     //+++++++  STEP 4. Get Exercise ++++++++++++
-    return -3;
+    //return -3;
     return web3.fromWei(web3.eth.getBalance(address), 'ether');
 };
 
@@ -455,7 +455,7 @@ exports.safeWithdraw = function(callback) {
 //----------------------------
 exports.fundTransferEvent = function( callback ) {
     //+++++++  STEP 5. Event Watch Exercise ++++++++++++
-    return callback(null,null);
+    //return callback(null,null);
     CrowdFundContract.FundTransfer().watch(function(err, res){
         if (err)
         {
