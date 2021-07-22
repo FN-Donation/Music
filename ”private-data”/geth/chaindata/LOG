@@ -1,0 +1,32 @@
+=============== Jul 21, 2021 (KST) ===============
+10:29:55.999481 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+10:29:56.001947 db@open opening
+10:29:56.007488 version@stat F·[] S·0B[] Sc·[]
+10:29:56.009297 db@janitor F·2 G·0
+10:29:56.009339 db@open done T·7.360636ms
+11:58:03.423685 db@close closing
+11:58:03.425380 db@close done T·1.685547ms
+=============== Jul 21, 2021 (KST) ===============
+11:58:18.054688 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+11:58:18.056926 version@stat F·[] S·0B[] Sc·[]
+11:58:18.057009 db@open opening
+11:58:18.057319 journal@recovery F·1
+11:58:18.060231 journal@recovery recovering @1
+11:58:18.155279 memdb@flush created L0@2 N·30163 S·2MiB "\x00\x00\xae..\x82\x88\x11,v9389":"\xff\xfc\x94..\xa5\x05\xa1,v9518"
+11:58:18.158165 version@stat F·[1] S·2MiB[2MiB] Sc·[0.25]
+11:58:18.163487 db@janitor F·3 G·0
+11:58:18.163525 db@open done T·106.484613ms
+14:46:27.833214 db@close closing
+14:46:27.835325 db@close done T·2.8957ms
+=============== Jul 21, 2021 (KST) ===============
+14:46:51.878326 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+14:46:51.880097 version@stat F·[1] S·2MiB[2MiB] Sc·[0.25]
+14:46:51.880171 db@open opening
+14:46:51.880277 journal@recovery F·1
+14:46:51.882802 journal@recovery recovering @3
+14:46:51.891421 memdb@flush created L0@5 N·5 S·662B "Sna..tor,v30167":"unc..own,v30166"
+14:46:51.894494 version@stat F·[2] S·2MiB[2MiB] Sc·[0.50]
+14:46:51.899438 db@janitor F·4 G·0
+14:46:51.899537 db@open done T·19.348994ms
+15:11:29.841517 db@close closing
+15:11:29.842812 db@close done T·1.291369ms

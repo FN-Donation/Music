@@ -1,76 +1,86 @@
-pragma solidity ^0.4.16;
+pragma solidity ^0.4.18;
 
 interface token {
-    function transfer(address receiver, uint amount);
+   function transfer(address receiver, uint amount) external;
 }
 
 contract CrowdFund {
-    address public beneficiary;
-    uint public fundingGoal;
-    uint public amountRaised;
+    address public owner;
+    address public producer;
+    uint public goalAmount;
+    uint public totalAmount;
     uint public deadline;
     uint public price;
     token public tokenReward;
     mapping(address => uint256) public balanceOf;
-    bool public fundingGoalReached = false;
-    bool public crowdsaleClosed = false;
+    bool public goalReached;
+    bool public ended;
 
-    event GoalReached(address beneficiaryAddress, uint amountRaisedValue);
+    event GoalReached(address ownerAddress, uint amountRaisedValue);
     event FundTransfer(address backer, uint amount, bool isContribution);
-
-    function CrowdFund(
-        address ifSuccessfulSendTo,
-        uint fundingGoalInEthers,
-        uint durationInMinutes,
-        uint etherCostOfEachToken,
-        address addressOfTokenUsedAsReward
-    ) {
-        beneficiary = ifSuccessfulSendTo;
-        fundingGoal = fundingGoalInEthers * 1 ether;
-        deadline = now + durationInMinutes * 1 minutes;
-        price = etherCostOfEachToken * 1 ether;
-        tokenReward = token(addressOfTokenUsedAsReward);
+    
+    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
     }
 
+    modifier afterDeadline() {
+        require(now >= deadline);
+        _;
+    }
 
+    constructor(address _tokenAddress, address _producerAddress) public {
+        owner = msg.sender;
+        producer = _producerAddress;
+        goalAmount = 30 * 1 ether;
+        deadline = now + (3 * 1 minutes);
+        price = 1 * 1 ether;
+        tokenReward = token(_tokenAddress);
+        totalAmount = 0;
+        goalReached = false;
+        ended = false;
+    }
 
-    function () payable {
-        require(!crowdsaleClosed);
+    function() payable external {
+        require(!ended);
         uint amount = msg.value;
         balanceOf[msg.sender] += amount;
-        amountRaised += amount;
+        totalAmount += amount;
         tokenReward.transfer(msg.sender, amount / price);
-        FundTransfer(msg.sender, amount, true);
+        emit FundTransfer(msg.sender, amount, true);
     }
 
-    modifier afterDeadline() { if (now >= deadline) _; }
-
-    function checkGoalReached() afterDeadline {
-        if (amountRaised >= fundingGoal){
-            fundingGoalReached = true;
-            GoalReached(beneficiary, amountRaised);
+    function checkGoalReached() external afterDeadline {
+        require(!ended);
+        if(totalAmount >= goalAmount) {
+            goalReached = true;
+            emit GoalReached(owner, totalAmount);
         }
-        crowdsaleClosed = true;
+        ended = true;
     }
 
-    function safeWithdrawal() afterDeadline {
-        if (!fundingGoalReached) {
+    function safeWithdrawal() external afterDeadline {
+        if(!goalReached) {
             uint amount = balanceOf[msg.sender];
             balanceOf[msg.sender] = 0;
-            if (amount > 0) {
-                if (msg.sender.send(amount)) {
-                    FundTransfer(msg.sender, amount, false);
+            if(amount > 0) {
+                if(msg.sender.send(amount)) {
+                    emit FundTransfer(msg.sender, amount, false);
                 } else {
                     balanceOf[msg.sender] = amount;
                 }
             }
         }
-        if (fundingGoalReached && beneficiary == msg.sender) {
-            if (beneficiary.send(amountRaised)) {
-                FundTransfer(beneficiary, amountRaised, false);
+        if(goalReached && owner == msg.sender) {
+            if(producer.send(totalAmount)) {
+                emit FundTransfer(producer, totalAmount, false);
             } else {
-                fundingGoalReached = false;
+                goalReached = false;
             }
         }
     }
-}
+
+    function kill() public onlyOwner {
+        selfdestruct(owner);
+    }
+} 

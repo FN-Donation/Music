@@ -37,31 +37,31 @@ router.post('/withdraw', function(req, res, next) {
 
   eth.unlockAccount(constant.mainAddress, passphase, checkUnlock);
 
-  function checkUnlock(err, result) {
+  async function checkUnlock(err, result) {
     if (err) {
       console.log(err);
       return callback(err);
     } else {
-      eth.safeWithdraw(checkTransaction);
+      await eth.safeWithdraw(checkTransaction);
     }
   }
 
-  function checkTransaction( err, result) {
+  async function checkTransaction( err, result) {
     if(err) {
       console.log(err);
       return callback(err);
     } else {
-      eth.fundTransferEvent(checkEvent);
+      await eth.fundTransferEvent(checkEvent);
     }
   }
 
-  function checkEvent(err, result) {
+  async function checkEvent(err, result) {
     if(err) {
       console.log(err);
       return res.send(400);
     } else {
       try {
-        res.redirect('/makers');
+        await res.redirect('/makers');
       } catch(e) {
       }
     }

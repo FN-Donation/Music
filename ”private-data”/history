@@ -1,0 +1,10 @@
+
+eth.account
+eth.accounts
+eth.account
+eth.accounts
+eth.getBalance(eth.coinbase)
+miner.start()
+eth.coinbase
+eth.accounts
+eth.coinbase

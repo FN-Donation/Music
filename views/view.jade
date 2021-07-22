@@ -2,29 +2,29 @@ doctype html
 html
   head
     meta(charset='utf-8')
-    title Mission Impossible
+    title 음악 저작권 거래 플랫폼
     link(rel="stylesheet" type="text/css" href="/stylesheets/main.css")
   body
     div(id='container')
 
       label(class='col-lg-2 control-label')
-        a Users &nbsp;&nbsp; | &nbsp;&nbsp;
-        a(href='/makers') Makers
+        a 구매자 &nbsp;&nbsp; | &nbsp;&nbsp;
+        a(href='/makers') 판매자
 
-      <img src="/images/mission_movie.png" width=100% height=100%>
+      <img src="/images/rollin.jpg" width=60% height=60%>
       h2(id='description')
-        span='Ether Balances: ' + fund_balance
+        span='현재 저작권 공모금: ' + fund_balance
         font(color='gray')  ETH
 
       h2(id='description')
 
-        span='Token Balances : ' + fund_tamount
-        font(color='gray')  TDs
+        span='남은 저작권 토큰 판매 수량 : ' + fund_tamount
+        font(color='gray')  LollinToken
 
-      button(id='button' onClick="location.href='/users/new'") Join
+      button(id='button' onClick="location.href='/users/new'") 구매하기
 
       div(style=display)
-        h2 My Account
-        p - My Account :   #{user}
-        p - My Ether Balances :   #{user_balance} ETH
-        p - My Token Balances :   #{user_tamount} TDs
+        h2 내 계좌
+        p - 계좌 :   #{user}
+        p - ETH 잔액 :   #{user_balance} ETH
+        p - Token 잔액 :   #{user_tamount} LollinToken
